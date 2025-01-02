@@ -26,3 +26,11 @@ class Qubit:
         angle = rng.random(1)[0]
         return Qubit([np.cos(angle), np.sin(angle)])
     
+    def measure(self):
+        if not self.is_collapsed:
+            rng = np.random.default_rng()
+            zero, one = Qubit.zero(), Qubit.one()
+            probs = np.abs(self.amps)**2
+            self.amps = rng.choice([zero.amps, one.amps], p=probs)
+        self.is_collapsed = True
+        return self
