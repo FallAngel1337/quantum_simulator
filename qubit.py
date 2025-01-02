@@ -11,3 +11,18 @@ class Qubit:
             self.amps = amps
         else:
             raise InvalidQubitAmplitudes
+
+    @staticmethod
+    def zero():
+        return Qubit(np.array([1, 0]))
+    
+    @staticmethod
+    def one():
+        return Qubit(np.array([0, 1]))
+    
+    @staticmethod
+    def random():
+        rng = np.random.default_rng()
+        angle = rng.random(1)[0]
+        return Qubit([np.cos(angle), np.sin(angle)])
+    
