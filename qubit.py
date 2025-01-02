@@ -44,6 +44,9 @@ class Qubit:
     def __eq__(self, other) -> bool:
         return self.amps[0] == other.amps[0] and self.amps[1] == other.amps[1]
     
+    def __hash__(self):
+        return hash((self.amps[0], self.amps[1]))
+    
     def __str__(self):
         if self.is_zero():
             return '|0>'
